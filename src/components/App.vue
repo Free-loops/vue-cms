@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-  <mt-header fixed title="黑马程序员·Vue项目">
+  <mt-header fixed title="商城·Vue项目">
     <span slot="left">
         <mt-button icon="back">返回</mt-button>
     </span>
