@@ -30,7 +30,7 @@ module.exports = {
       { test: /\.ttf|woff|woff2|eot|svg$/, use: 'url-loader' }, // 处理 样式中字体文件路径的问题
     ]
   },
-  resolve: {
+  resolve: {//对载入的包的路径 起别名
     /* alias: { // 别名
       'vue$': 'vue/dist/vue.js'
     } */

@@ -35,7 +35,10 @@
     "webpack-dev-server": "^2.9.7"
   },
   "dependencies": {
+    "axios": "^0.17.1",
+    "babel-plugin-transform-remove-strict-mode": "0.0.2",
     "mint-ui": "^2.2.13",
+    "moment": "^2.20.1",
     "vue": "^2.5.13",
     "vue-router": "^3.0.1"
   }
