@@ -3,30 +3,17 @@
         <div id="slider" class="mui-slider">
             <div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
                 <div class="mui-scroll">
-                    <a class="mui-control-item mui-active" href="#item1mobile" data-wid="tab-top-subpage-1.html">
-                        推荐
-                    </a>
-                    <a class="mui-control-item" href="#item2mobile" data-wid="tab-top-subpage-2.html">
-                        热点
-                    </a>
-                    <a class="mui-control-item" href="#item3mobile" data-wid="tab-top-subpage-3.html">
-                        北京
-                    </a>
-                    <a class="mui-control-item" href="#item4mobile" data-wid="tab-top-subpage-4.html">
-                        社会
-                    </a>
-                    <a class="mui-control-item" href="#item5mobile" data-wid="tab-top-subpage-5.html">
-                        娱乐
-                    </a>
-                    <a class="mui-control-item" href="#item5mobile" data-wid="tab-top-subpage-5.html">
-                        娱乐
-                    </a>
-                    <a class="mui-control-item" href="#item5mobile" data-wid="tab-top-subpage-5.html">
-                        娱乐
-                    </a>
+                    <router-link v-for="item in imgcategory" :key='item.id' class="mui-control-item" :to="'/home/photolist/'+item.id" @click.prevent='getimginfo(item.id)'>
+                        {{item.title}}
+                    </router-link>
                 </div>
             </div>
         </div>  
+        <ul class="photo-list" style="list-style:none">
+            <li v-for="(item,i) in photolist" :key="i">
+                <img :src="item.img_url" alt="">
+            </li>
+        </ul>
     </div> 
 </template>
 <script>
@@ -34,10 +21,26 @@ import mui from '../../../lib/mui/js/mui.min.js'
     export default {
         data(){
             return {
-
+            imgcategory:[],
+            photolist: []
             }
         },
-        methods:{},
+        props:['id'],
+        created(){
+            this.getimgcategory()
+            this.getimginfo(0)
+        },
+        methods:{
+            async getimgcategory() {
+                const {data} = await this.$http('/api/getimgcategory')
+                data.message.unshift({ title:'全部', id:0 })
+                if(data.status===0) return this.imgcategory = data.message
+            },
+            async getimginfo(id){
+                const {data} = await this.$http('/api/getimages/'+id)
+                if(data.status===0) return this.photolist = data.message
+            }
+        },
         mounted(){
             mui('.mui-scroll-wrapper').scroll({
                 deceleration: 0.0005 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
@@ -46,5 +49,25 @@ import mui from '../../../lib/mui/js/mui.min.js'
     }
 </script>
 <style lang="scss" scoped>
+    ul,li{
+        list-style: none;
+        margin: 0;
+        padding:10px;
+        padding-bottom: 0;
+    }
+    .photo-list {
+        li{
+            background-color: #ccc;
+            text-align: center;
+            margin-bottom: 10px;
+            box-shadow: 0 0 9px #999;
+            position: relative;
+            padding: 0;
+            img {
+                width: 100%;
+                vertical-align: middle;
+            }
+        }
+    }
    .mui-scroll{ touch-action: pan-y;}
 </style>

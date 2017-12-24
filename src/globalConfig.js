@@ -18,3 +18,6 @@ Vue.prototype.$http = axios.create({
 })
 //导入全局的过滤器
 import './filters'
+
+import VuePreview from 'vue-preview'
+Vue.use(VuePreview)

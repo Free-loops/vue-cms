@@ -41,6 +41,9 @@
 	padding-bottom: 50px;
 	overflow: hidden;
 }
+.mint-header.is-fixed {
+	z-index:2
+}
 .v-enter{
 	transform: translateX(100%)
 }
