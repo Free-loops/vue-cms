@@ -9,6 +9,7 @@ import newsinfo from './components/news/newsinfo.vue'
 import photolist from './components/photos/photolist.vue'
 import photoinfo from './components/photos/photoinfo.vue'
 import goodlist from './components/goods/goodlist.vue'
+import goodinfo from './components/goods/goodinfo.vue'
 
 
 const router = new VueRouter({ 
@@ -22,8 +23,8 @@ const router = new VueRouter({
         {path:'/home/newsinfo/:id',component:newsinfo,props:true},
         {path:'/home/photolist/:id',component:photolist,props:true},
         {path:'/home/photoinfo/:id',component:photoinfo,props:true},
-        {path:'/home/goodlist',component:goodlist}
-        
+        {path:'/home/goodlist',component:goodlist},
+        {path:'/home/goodinfo/:id',component:goodinfo,props:true}
     ],
     linkActiveClass:'mui-active'
 })

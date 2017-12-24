@@ -1,10 +1,6 @@
 <template>
   <div>
-    <mt-swipe :auto="4000">
-      <mt-swipe-item v-for="(item,i) in lunbo" :key='i'>
-        <img :src="item.img" alt="">
-      </mt-swipe-item>
-    </mt-swipe>
+    <lunbotu :lunbotu="lunbo" :imgname="'img'"></lunbotu>
     <ul class="mui-table-view mui-grid-view mui-grid-9">
         <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/home/news">
           <img src="../../images/menu1.png" alt="">
@@ -35,6 +31,7 @@
   
 </template>
 <script>
+import lunbotu from '../sub-components/lunbotu.vue'
     export default {
       data(){
         return {
@@ -49,17 +46,13 @@
           const {data} = await this.$http("/api/getlunbo")
           if(data.status===0)return this.lunbo = data.message
         }
+      },
+      components:{
+        lunbotu
       }
     }
 </script>
 <style lang="scss" scoped>
-  .mint-swipe{
-    height: 180px;
-    img {
-      width: 100%;
-      height: 100%;
-    }
-  }
   .mui-grid-view {
     border:none;
     background-color: #fff;
