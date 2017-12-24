@@ -3,16 +3,16 @@
         <div id="slider" class="mui-slider">
             <div id="sliderSegmentedControl" class="mui-scroll-wrapper mui-slider-indicator mui-segmented-control mui-segmented-control-inverted">
                 <div class="mui-scroll">
-                    <router-link v-for="item in imgcategory" :key='item.id' class="mui-control-item" :to="'/home/photolist/'+item.id" @click.prevent='getimginfo(item.id)'>
+                    <span v-for="item in imgcategory" :key='item.id' :class="['mui-control-item',item.id==0?'mui-active':'']" @click.prevent='getimginfo(item.id)'>
                         {{item.title}}
-                    </router-link>
+                    </span>
                 </div>
             </div>
         </div>  
         <ul class="photo-list" style="list-style:none">
-            <li v-for="(item,i) in photolist" :key="i">
+            <router-link tag='li' v-for="(item,i) in photolist" :key="i" :to="'/home/photoinfo/'+item.id">
                 <img :src="item.img_url" alt="">
-            </li>
+            </router-link>
         </ul>
     </div> 
 </template>
